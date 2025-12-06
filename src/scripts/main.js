@@ -1,10 +1,22 @@
 'use strict';
 
-const wall = document.querySelector('.wall');
-const spider = document.querySelector('.spider');
+window.addEventListener('load', () => {
+  const wall = document.querySelector('.wall');
+  const spider = document.querySelector('.spider');
 
-const centerX = (wall.clientWidth - spider.clientWidth) / 2;
-const centerY = (wall.clientHeight - spider.clientHeight) / 2;
+  if (!wall || !spider) {
+    return;
+  }
 
-spider.style.left = `${centerX}px`;
-spider.style.top = `${centerY}px`;
+  function centerSpider() {
+    const centerX = (wall.clientWidth - spider.clientWidth) / 2;
+    const centerY = (wall.clientHeight - spider.clientHeight) / 2;
+
+    spider.style.left = `${centerX}px`;
+    spider.style.top = `${centerY}px`;
+  }
+
+  centerSpider();
+
+  window.addEventListener('resize', centerSpider);
+});
